@@ -18,24 +18,21 @@ Este proyecto es una **aplicación de rutas más cortas entre nodos** implementa
   - Puedes descargar Python desde [aquí](https://www.python.org/downloads/).
 
 ### Dependencias:
-Este proyecto usa la librería **Tkinter**, que generalmente viene preinstalada con Python. Si no la tienes instalada, puedes hacerlo mediante el siguiente comando (para sistemas basados en Linux):
+Este proyecto usa la librería **Tkinter**, que generalmente viene preinstalada con Python. Si no la tienes instalada, puedes hacerlo mediante el siguiente comando (para sistemas basados en Linux): ```bash  sudo apt-get install python3-tk
 
-```bash
-sudo apt-get install python3-tk
-
-###3. Instrucciones para Instalar y Ejecutar el Programa
-####1. Clonar repositorio: https://github.com/JoinerPineda/Nodos_Proyecto2
-####2. Acceder a la carpeta del proyecto: 
+## 3. Instrucciones para Instalar y Ejecutar el Programa
+#### 1. Clonar repositorio: https://github.com/JoinerPineda/Nodos_Proyecto2
+#### 2. Acceder a la carpeta del proyecto: 
 cd Nodos_Proyecto2
-####3. Ejecutar el programa:
+#### 3. Ejecutar el programa:
 Si ya tienes Python 3.x instalado, puedes ejecutar el proyecto directamente con el siguiente comando:
 **python main.py**
 Esto abrirá una ventana con la interfaz gráfica, donde podrás interactuar con el proyecto.
 
-### 4. Descripción de las Funcionalidades
+## 4. Descripción de las Funcionalidades
 La aplicación tiene las siguientes funcionalidades:
 
-####Agregar Nodo:
+#### Agregar Nodo:
 
 Al presionar el botón **"Agregar Nodo"**, puedes hacer clic en el lienzo para crear nodos numerados. Los nodos se representan como círculos con el número del nodo dentro.
 Agregar Arista:
@@ -48,5 +45,5 @@ Reiniciar:
 
 El botón **"Reiniciar"** limpiará todos los nodos y aristas, y permitirá empezar de nuevo.
 
-####5. Prueba de codigo:
+## 5. Prueba de codigo:
 https://drive.google.com/file/d/1b8TwY9Qsw_lVBtg4y5Vw9L1MNjgs2osJ/view?usp=drive_link
