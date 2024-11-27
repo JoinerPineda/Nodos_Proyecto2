@@ -20,6 +20,9 @@ class GraphApp:
         self.btn_shortest_path = tk.Button(root, text="Camino Más Corto", command=self.find_shortest_path_mode)
         self.btn_shortest_path.pack(side=tk.LEFT)
 
+        self.btn_reset = tk.Button(root, text="Reiniciar", command=self.reset_graph)
+        self.btn_reset.pack(side=tk.LEFT)
+
         # Variables
         self.nodes = []  # Lista de nodos
         self.edges = {}  # Diccionario de aristas dirigidas
@@ -40,6 +43,15 @@ class GraphApp:
     def find_shortest_path_mode(self):
         self.mode = "shortest_path"
         self.selected_nodes = []
+
+    def reset_graph(self):
+        """Reinicia la interfaz y las variables del grafo."""
+        self.canvas.delete("all")  
+        self.nodes = []  
+        self.edges = {}
+        self.node_count = 0 
+        self.selected_nodes = []  
+        self.mode = None  
 
     def on_canvas_click(self, event):
         if self.mode == "add_node":
@@ -73,15 +85,16 @@ class GraphApp:
         self.draw_arrow(x1, y1, x2, y2)
 
     def draw_arrow(self, x1, y1, x2, y2):
-
+        # Radio del nodo
         radius = 15
 
+        # Calcular vector de dirección de la línea
         dx = x2 - x1
         dy = y2 - y1
         distance = math.sqrt(dx**2 + dy**2)
 
         # Ajustar los puntos para que terminen en el borde del círculo
-        if distance != 0:  
+        if distance != 0:  # Evitar división por cero
             x1_adjusted = x1 + (dx / distance) * radius
             y1_adjusted = y1 + (dy / distance) * radius
             x2_adjusted = x2 - (dx / distance) * radius
