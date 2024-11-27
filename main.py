@@ -22,7 +22,7 @@ class GraphApp:
 
         # Variables
         self.nodes = []  # Lista de nodos
-        self.edges = {}  # Diccionario de aristas
+        self.edges = {}  # Diccionario de aristas dirigidas
         self.node_count = 0
         self.mode = None  # Modo actual
         self.selected_nodes = []  # Nodos seleccionados para aristas o caminos
@@ -70,8 +70,30 @@ class GraphApp:
         x2, y2 = self.get_node_coordinates(node2)
         weight = int(math.sqrt((x2 - x1)**2 + (y2 - y1)**2))
         self.edges[node1][node2] = weight
-        self.edges[node2][node1] = weight
-        self.canvas.create_line(x1, y1, x2, y2, fill="black")
+        self.draw_arrow(x1, y1, x2, y2)
+
+    def draw_arrow(self, x1, y1, x2, y2):
+
+        radius = 15
+
+        dx = x2 - x1
+        dy = y2 - y1
+        distance = math.sqrt(dx**2 + dy**2)
+
+        # Ajustar los puntos para que terminen en el borde del círculo
+        if distance != 0:  
+            x1_adjusted = x1 + (dx / distance) * radius
+            y1_adjusted = y1 + (dy / distance) * radius
+            x2_adjusted = x2 - (dx / distance) * radius
+            y2_adjusted = y2 - (dy / distance) * radius
+        else:  # Si los nodos están superpuestos, no ajustar
+            x1_adjusted, y1_adjusted = x1, y1
+            x2_adjusted, y2_adjusted = x2, y2
+
+        # Dibujar la flecha ajustada
+        self.canvas.create_line(
+            x1_adjusted, y1_adjusted, x2_adjusted, y2_adjusted, fill="black", arrow=tk.LAST
+        )
 
     def select_node_for_path(self, x, y):
         node = self.get_node_at_position(x, y)
