@@ -24,34 +24,52 @@ class GraphApp:
         self.btn_reset.pack(side=tk.LEFT)
 
         # Variables
-        self.nodes = []  # Lista de nodos
-        self.edges = {}  # Diccionario de aristas dirigidas
+        self.nodes = [] 
+        self.edges = {}  
         self.node_count = 0
-        self.mode = None  # Modo actual
-        self.selected_nodes = []  # Nodos seleccionados para aristas o caminos
+        self.mode = None  
+        self.selected_nodes = []  
 
-        # Eventos del canvas
+        # Referencia a botones para cambiar estilos
+        self.buttons = {
+            "add_node": self.btn_add_node,
+            "add_edge": self.btn_add_edge,
+            "shortest_path": self.btn_shortest_path,
+        }
+
         self.canvas.bind("<Button-1>", self.on_canvas_click)
+
+    def set_button_active(self, mode):
+        """Cambia la apariencia del botón activo."""
+        for m, button in self.buttons.items():
+            if m == mode:
+                button.config(bg="lightgreen", relief=tk.SUNKEN)  # Activo
+            else:
+                button.config(bg="SystemButtonFace", relief=tk.RAISED)  # Inactivo
 
     def add_node_mode(self):
         self.mode = "add_node"
+        self.set_button_active("add_node")
 
     def add_edge_mode(self):
         self.mode = "add_edge"
+        self.set_button_active("add_edge")
         self.selected_nodes = []
 
     def find_shortest_path_mode(self):
         self.mode = "shortest_path"
+        self.set_button_active("shortest_path")
         self.selected_nodes = []
 
     def reset_graph(self):
         """Reinicia la interfaz y las variables del grafo."""
-        self.canvas.delete("all")  
-        self.nodes = []  
-        self.edges = {}
-        self.node_count = 0 
-        self.selected_nodes = []  
-        self.mode = None  
+        self.canvas.delete("all")  # Limpia el canvas
+        self.nodes = []  # Reinicia los nodos
+        self.edges = {}  # Reinicia las aristas
+        self.node_count = 0  # Reinicia el contador de nodos
+        self.selected_nodes = []  # Limpia las selecciones
+        self.mode = None  # Reinicia el modo
+        self.set_button_active(None)  # Restaura estilos de los botones
 
     def on_canvas_click(self, event):
         if self.mode == "add_node":
